@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.nhuhuy.flamebase" />
+                  <option name="mobileSdkAppId" value="1:908498273984:android:91be2750f504a55165cf25" />
+                  <option name="projectId" value="pres-e1118" />
+                  <option name="projectNumber" value="908498273984" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

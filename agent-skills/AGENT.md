@@ -38,3 +38,8 @@ performFirebaseAuthentication()
 - Verify imports after changes
 - Ensure code builds successfully
 - Ensure tests pass before finishing
+- Verify Gradle sync compatibility
+- Verify coroutine APIs compile
+- Verify Flow types match
+- Verify visibility modifiers
+- Verify extension receiver correctness

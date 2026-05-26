@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "908498273984",
+    "project_id": "pres-e1118",
+    "storage_bucket": "pres-e1118.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908498273984:android:91be2750f504a55165cf25",
+        "android_client_info": {
+          "package_name": "com.nhuhuy.flamebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTCdbEl61MoS6b5FJHXL7q-WXfUvnj064"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908498273984:android:eb6ab5f6d544202265cf25",
+        "android_client_info": {
+          "package_name": "com.nhuhuy.pres"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTCdbEl61MoS6b5FJHXL7q-WXfUvnj064"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

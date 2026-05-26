@@ -23,10 +23,15 @@ sealed interface AuthenticatedState {
 object FlameAuth {
 
     /**
+     * Provider for the [FirebaseAuth] instance. Can be swapped for testing.
+     */
+    internal var authProvider: () -> FirebaseAuth = { Firebase.auth }
+
+    /**
      * The [FirebaseAuth] instance used by the library.
      */
     val auth: FirebaseAuth
-        get() = Firebase.auth
+        get() = authProvider()
 
     /**
      * The currently signed-in [FirebaseUser], or null if none.

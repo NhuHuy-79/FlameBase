@@ -24,6 +24,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":flamebase:core"))
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.androidx.appcompat)

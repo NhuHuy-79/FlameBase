@@ -1,6 +1,6 @@
 # Flamebase
 
-<p align="center">
+<p align="start">
 <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Kotlin/kotlin3.svg" alt=""> 
 <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Firebase/firebase3.svg" alt="">
 <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Android/android2.svg" alt="">

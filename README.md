@@ -8,7 +8,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Kotlin](https://img.shields.io/badge/kotlin-2.0.0-purple.svg)](https://kotlinlang.org/)
-[![JitPack](https://jitpack.io/v/NhuHuy-79/FlameBase.svg)](https://jitpack.io/#YOUR_GITHUB_USERNAME/Flamebase)
+[![JitPack](https://jitpack.io/v/NhuHuy-79/FlameBase.svg)](https://jitpack.io/NhuHuy-79/Flamebase)
 
 **Flamebase** is a Kotlin-first library that provides a thin and powerful wrapper for the Firebase
 SDK on Android. Designed to hide Data layer complexity, it leverages Coroutines/Flow and adheres to

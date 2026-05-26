@@ -24,4 +24,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "FlameBase"
 include(":app")
- 
+include(":flamebase:core")
+include(":flamebase:auth")

@@ -1,8 +1,14 @@
 # Flamebase
 
+<p align="center">
+<img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Kotlin/kotlin3.svg" alt=""> 
+<img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Firebase/firebase3.svg" alt="">
+<img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/Android/android2.svg" alt="">
+</p>
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Kotlin](https://img.shields.io/badge/kotlin-2.0.0-purple.svg)](https://kotlinlang.org/)
-[![JitPack](https://jitpack.io/v/YOUR_GITHUB_USERNAME/Flamebase.svg)](https://jitpack.io/#YOUR_GITHUB_USERNAME/Flamebase)
+[![JitPack](https://jitpack.io/v/NhuHuy-79/FlameBase.svg)](https://jitpack.io/#YOUR_GITHUB_USERNAME/Flamebase)
 
 **Flamebase** is a Kotlin-first library that provides a thin and powerful wrapper for the Firebase
 SDK on Android. Designed to hide Data layer complexity, it leverages Coroutines/Flow and adheres to
@@ -31,11 +37,11 @@ Add the library to your app module's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    // Replace 'Tag' with the latest release version (e.g., 1.0.0)
-    implementation("com.github.YOUR_GITHUB_USERNAME:Flamebase:auth:Tag")
-    implementation("com.github.YOUR_GITHUB_USERNAME:Flamebase:core:Tag")
+    // Flamebase Core & Auth Modules (Current Version: 1.0.0)
+    implementation("com.github.NhuHuy-79.FlameBase:core:1.0.0")
+    implementation("com.github.NhuHuy-79.FlameBase:auth:1.0.0")
 
-    // Firebase BoM is required as Flamebase is a thin wrapper
+    // Firebase BoM is required as Flamebase operates as a thin wrapper
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
 }
 ```

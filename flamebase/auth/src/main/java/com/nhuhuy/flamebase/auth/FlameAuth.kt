@@ -21,7 +21,13 @@ sealed interface AuthenticatedState {
  * Provides access to the underlying [FirebaseAuth] and the current [FirebaseUser].
  */
 object FlameAuth {
-
+    data class User(
+        val uid: String,
+        val email: String?,
+        val displayName: String?,
+        val photoUrl: String?,
+        val isEmailVerified: Boolean
+    )
     /**
      * Provider for the [FirebaseAuth] instance. Can be swapped for testing.
      */
@@ -34,9 +40,15 @@ object FlameAuth {
         get() = authProvider()
 
     /**
-     * The currently signed-in [FirebaseUser], or null if none.
+     * The currently signed-in [User], or null if none.
      */
-    val currentUser: FirebaseUser?
+    val currentUser: User?
+        get() = firebaseUser?.toFlameUser()
+
+    /**
+     * The underlying [FirebaseUser] instance. Internal use only.
+     */
+    internal val firebaseUser: FirebaseUser?
         get() = auth.currentUser
 
     suspend fun getAuthenticatedToken() : String? {
@@ -63,4 +75,14 @@ object FlameAuth {
             }
         }
 
+}
+
+internal fun FirebaseUser.toFlameUser(): FlameAuth.User {
+    return FlameAuth.User(
+        uid = uid,
+        displayName = displayName,
+        email = email,
+        photoUrl = photoUrl?.toString(),
+        isEmailVerified = isEmailVerified
+    )
 }

@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.nhuhuy.flamebase"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.nhuhuy.flamebase"

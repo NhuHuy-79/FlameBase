@@ -6,12 +6,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseUser
 import com.nhuhuy.flamebase.auth.FlameAuth
-import com.nhuhuy.flamebase.auth.error.FlameAuthError
 import com.nhuhuy.flamebase.core.result.FlameResult
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.unmockkStatic
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -38,19 +35,28 @@ class AuthOperationsTest {
     @After
     fun tearDown() {
         // Reset to default
-        FlameAuth.authProvider = { com.google.firebase.auth.FirebaseAuth.getInstance() }
+        FlameAuth.authProvider = { FirebaseAuth.getInstance() }
     }
 
     @Test
     fun `signIn returns success when firebase succeeds`() = runTest {
         val mockAuthResult = mockk<AuthResult>()
+        every { mockUser.uid } returns "123"
+        every { mockUser.email } returns "test@example.com"
+        every { mockUser.displayName } returns "Test User"
+        every { mockUser.photoUrl } returns null
+        every { mockUser.isEmailVerified } returns true
         every { mockAuthResult.user } returns mockUser
         every { mockAuth.signInWithEmailAndPassword(any(), any()) } returns Tasks.forResult(mockAuthResult)
 
         val result = FlameAuth.signIn("test@example.com", "password")
 
         assertTrue(result is FlameResult.Success)
-        assertEquals(mockUser, (result as FlameResult.Success).data)
+        val user = (result as FlameResult.Success).data
+        assertEquals("123", user.uid)
+        assertEquals("test@example.com", user.email)
+        assertEquals("Test User", user.displayName)
+        assertEquals(true, user.isEmailVerified)
     }
 
     @Test
@@ -70,6 +76,11 @@ class AuthOperationsTest {
     @Test
     fun `signUp returns success and updates profile`() = runTest {
         val mockAuthResult = mockk<AuthResult>()
+        every { mockUser.uid } returns "123"
+        every { mockUser.email } returns "new@example.com"
+        every { mockUser.displayName } returns "John Doe"
+        every { mockUser.photoUrl } returns null
+        every { mockUser.isEmailVerified } returns false
         every { mockAuthResult.user } returns mockUser
         every { mockAuth.createUserWithEmailAndPassword(any(), any()) } returns Tasks.forResult(mockAuthResult)
         every { mockUser.updateProfile(any()) } returns Tasks.forResult(null)
@@ -81,7 +92,9 @@ class AuthOperationsTest {
         }
         
         assertTrue("Expected Success, but got $result", result is FlameResult.Success)
-        assertEquals(mockUser, (result as FlameResult.Success).data)
+        val user = (result as FlameResult.Success).data
+        assertEquals("123", user.uid)
+        assertEquals("John Doe", user.displayName)
     }
 
     @Test

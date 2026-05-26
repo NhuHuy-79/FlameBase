@@ -1,8 +1,8 @@
 package com.nhuhuy.flamebase.auth.operations
 
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.nhuhuy.flamebase.auth.FlameAuth
+import com.nhuhuy.flamebase.auth.toFlameUser
 import com.nhuhuy.flamebase.core.result.FlameResult
 import com.nhuhuy.flamebase.core.utils.FlameCall
 import kotlinx.coroutines.tasks.await
@@ -15,14 +15,14 @@ import kotlin.time.Duration
  * @param password The user's password.
  * @param displayName Optional name to set for the user profile immediately after creation.
  * @param timeout Optional maximum duration for the operation.
- * @return [FlameResult] containing the new [FirebaseUser].
+ * @return [FlameResult] containing the new [FlameAuth.User].
  */
 suspend fun FlameAuth.signUp(
     email: String,
     password: String,
     displayName: String? = null,
     timeout: Duration? = null,
-): FlameResult<FirebaseUser> = FlameCall.call(timeout = timeout) {
+): FlameResult<FlameAuth.User> = FlameCall.call(timeout = timeout) {
     val result = auth.createUserWithEmailAndPassword(email, password).await()
     val user = result.user ?: error("User not found after creation")
 
@@ -33,7 +33,7 @@ suspend fun FlameAuth.signUp(
         user.updateProfile(updates).await()
     }
 
-    user
+    user.toFlameUser()
 }
 
 /**
@@ -42,5 +42,5 @@ suspend fun FlameAuth.signUp(
 suspend fun FlameAuth.sendEmailVerification(
     timeout: Duration? = null,
 ): FlameResult<Unit> = FlameCall.call(timeout = timeout) {
-    currentUser?.sendEmailVerification()?.await() ?: error("No authenticated user to verify")
+    firebaseUser?.sendEmailVerification()?.await() ?: error("No authenticated user to verify")
 }

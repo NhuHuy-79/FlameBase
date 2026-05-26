@@ -1,5 +1,6 @@
 package com.nhuhuy.flamebase.auth.operations
 
+import androidx.core.net.toUri
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.nhuhuy.flamebase.auth.FlameAuth
@@ -7,7 +8,6 @@ import com.nhuhuy.flamebase.core.result.FlameResult
 import com.nhuhuy.flamebase.core.utils.FlameCall
 import kotlinx.coroutines.tasks.await
 import kotlin.time.Duration
-import androidx.core.net.toUri
 
 /**
  * Updates the profile information of the current user.
@@ -17,7 +17,7 @@ suspend fun FlameAuth.updateProfile(
     photoUrl: String? = null,
     timeout: Duration? = null,
 ): FlameResult<Unit> = FlameCall.call(timeout = timeout) {
-    val user = currentUser ?: error("No authenticated user found")
+    val user = firebaseUser ?: error("No authenticated user found")
     val updates = UserProfileChangeRequest.Builder().apply {
         displayName?.let { setDisplayName(it) }
         photoUrl?.let { photoUri = it.toUri() }
@@ -33,7 +33,7 @@ suspend fun FlameAuth.updateEmail(
     newEmail: String,
     timeout: Duration? = null,
 ): FlameResult<Unit> = FlameCall.call(timeout = timeout) {
-    currentUser?.verifyBeforeUpdateEmail(newEmail)?.await() ?: error("No authenticated user found")
+    firebaseUser?.verifyBeforeUpdateEmail(newEmail)?.await() ?: error("No authenticated user found")
 }
 
 /**
@@ -44,7 +44,7 @@ suspend fun FlameAuth.updatePassword(
     newPassword: String,
     timeout: Duration? = null,
 ): FlameResult<Unit> = FlameCall.call(timeout = timeout) {
-    currentUser?.updatePassword(newPassword)?.await() ?: error("No authenticated user found")
+    firebaseUser?.updatePassword(newPassword)?.await() ?: error("No authenticated user found")
 }
 
 /**
@@ -55,7 +55,7 @@ suspend fun FlameAuth.reauthenticate(
     credential: AuthCredential,
     timeout: Duration? = null,
 ): FlameResult<Unit> = FlameCall.call(timeout = timeout) {
-    currentUser?.reauthenticate(credential)?.await() ?: error("No authenticated user found")
+    firebaseUser?.reauthenticate(credential)?.await() ?: error("No authenticated user found")
 }
 
 /**
@@ -64,7 +64,7 @@ suspend fun FlameAuth.reauthenticate(
 suspend fun FlameAuth.reloadUser(
     timeout: Duration? = null,
 ): FlameResult<Unit> = FlameCall.call(timeout = timeout) {
-    currentUser?.reload()?.await() ?: error("No authenticated user found")
+    firebaseUser?.reload()?.await() ?: error("No authenticated user found")
 }
 
 /**
@@ -73,5 +73,5 @@ suspend fun FlameAuth.reloadUser(
 suspend fun FlameAuth.deleteUser(
     timeout: Duration? = null,
 ): FlameResult<Unit> = FlameCall.call(timeout = timeout) {
-    currentUser?.delete()?.await() ?: error("No authenticated user found")
+    firebaseUser?.delete()?.await() ?: error("No authenticated user found")
 }

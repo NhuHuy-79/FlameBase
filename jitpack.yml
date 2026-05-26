@@ -3,4 +3,5 @@ jdk:
 before_install:
   - chmod +x gradlew
 install:
-  - ./gradlew publishToMavenLocal -Dgroup=com.github.NhuHuy-79 -Dversion=1.0.0
+  - ./gradlew :flamebase:core:publishToMavenLocal
+  - ./gradlew :flamebase:auth:publishToMavenLocal

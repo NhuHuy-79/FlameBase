@@ -30,7 +30,7 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.nhuhuy.flamebase"
+                groupId = "com.github.NhuHuy-79"
                 artifactId = "core"
                 version = "1.0.0"
             }

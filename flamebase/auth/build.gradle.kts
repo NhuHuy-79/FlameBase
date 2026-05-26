@@ -18,10 +18,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    testOptions {
-        unitTests.isReturnDefaultValues = true
-    }
-
     publishing {
         singleVariant("release") {
             withSourcesJar()
@@ -34,7 +30,7 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.nhuhuy.flamebase"
+                groupId = "com.github.NhuHuy-79"
                 artifactId = "auth"
                 version = "1.0.0"
             }
